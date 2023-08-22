@@ -43,7 +43,7 @@ const darkMode = ref(false);
   </header>
 
   <div class="" v-bind:class="{dark: darkMode}">
-    <div class="dark:bg-gray-600 dark:text-white">
+    <div class="dark:bg-gray-600 dark:text-white min-w-screen min-h-screen">
       <NuxtPage></NuxtPage>
     </div>
   </div>
@@ -53,8 +53,6 @@ const darkMode = ref(false);
 .router-link-active {
   @apply bg-green-400 text-white
 }
-body {
- @apply bg-red-700
-}
+
 
 </style>

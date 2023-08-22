@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  <div class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+  <div class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 flex flex-col justify-between items-center gap-2">
     <a href="#">
       <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{foodItem.title}}</h5>
     </a>

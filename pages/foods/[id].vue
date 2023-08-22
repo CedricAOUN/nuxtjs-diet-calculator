@@ -1,5 +1,17 @@
 <script setup lang="ts">
 
+import ServingInfoModal from "~/components/ServingInfoModal.vue";
+
+interface Item {
+  image: string,
+  title: string,
+  nutrition: NutritionData,
+  breadcrumbs: any[],
+  servingValue: number
+}
+
+
+
 interface CaloricBreakdown {
   percentProtein: number,
   percentFat: number,
@@ -20,9 +32,24 @@ interface NutritionData {
  const url = `https://api.spoonacular.com/food/menuItems/${id}?apiKey=dac835290173412eaf8ca3f8a4011a1b`;
  const { data: item } = await useFetch<any>(url)
 
- const i = ref<any>(item.value)
+ const i = ref<Item>(item.value)
 
-console.log(i);
+const servingValue = ref<number>(1)
+let itemsList = useItemList;
+
+ const isAdded: boolean = itemsList().value.find((item: any) => {
+   if(item.value.id == id){
+     return true;
+   }
+ })
+
+
+ function handleAdd() {
+   i.value = {...i.value, servingValue: servingValue.value}
+   itemsList().value = [...itemsList().value, i]
+   navigateTo('/foods')
+ }
+
 
 const nutritionData = computed<NutritionData>(() => i.value.nutrition);
 
@@ -33,29 +60,29 @@ const nutritionData = computed<NutritionData>(() => i.value.nutrition);
     <div class="flex flex-col justify-center items-center gap-3">
       <h1 class="text-4xl">{{ i.title }}</h1>
       <img class="h-32 w-32 object-center" :src="i.image" :alt="`${i.title} - image`">
-      <!-- Generate chips for breadcrumbs TODO-->
+      <BreadcrumbChips :crumbs="i.breadcrumbs" />
       <div class="flex flex-row gap-3">
-        <div class="bg-green-400 flex flex-col justify-center items-center rounded flex-wrap p-5">
+        <div class="bg-green-400 dark:bg-green-600 flex flex-col justify-center items-center rounded flex-wrap p-5">
           <p>Protein: {{nutritionData.caloricBreakdown.percentProtein}}%</p>
           <p>Fat: {{nutritionData.caloricBreakdown.percentFat}}%</p>
           <p>Carbs: {{nutritionData.caloricBreakdown.percentCarbs}}%</p>
         </div>
-        <div class="bg-green-400 flex flex-col justify-center items-center rounded flex-wrap p-5">
+        <div class="bg-green-400 dark:bg-green-600 flex flex-col justify-center items-center rounded flex-wrap p-5">
           <h2>Calories</h2>
           <Icon name="fluent-mdl2:calories"></Icon>
           <p>{{nutritionData.calories}}</p>
         </div>
-        <div class="bg-green-400 flex flex-col justify-center items-center rounded flex-wrap p-5">
+        <div class="bg-green-400 dark:bg-green-600 flex flex-col justify-center items-center rounded flex-wrap p-5">
           <h2>Carbs</h2>
           <Icon name="fa6-solid:plate-wheat"></Icon>
           <p>{{nutritionData.carbs}}</p>
         </div>
-        <div class="bg-green-400 flex flex-col justify-center items-center rounded flex-wrap p-5">
+        <div class="bg-green-400 dark:bg-green-600 flex flex-col justify-center items-center rounded flex-wrap p-5">
           <h2>Fat</h2>
           <Icon name="mdi:trans-fat"></Icon>
           <p>{{nutritionData.fat}}</p>
         </div>
-        <div class="bg-green-400 flex flex-col justify-center items-center rounded flex-wrap p-5">
+        <div class="bg-green-400 dark:bg-green-600 flex flex-col justify-center items-center rounded flex-wrap p-5">
           <h2>Protein</h2>
           <Icon name="mdi:arm-flex"></Icon>
           <p>{{nutritionData.protein}}</p>
@@ -68,25 +95,23 @@ const nutritionData = computed<NutritionData>(() => i.value.nutrition);
         <p class="text-left w-[90svw] lg:w-[30svw] border-b-[1px] border-b-black dark:border-b-white p-2" v-for="nItem of nutritionData.nutrients">{{nItem.amount}}{{nItem.unit}}<span class="float-right">{{nItem.name}}</span></p>
 
       </div>
+      <div class="max-w-[400px] flex gap-5 items-center">
+        <p>Servings:</p>
+        <input v-model="servingValue" class="bg-gray-400 rounded p-2" placeholder="Enter a number ex: 1.5">
+        <ServingInfoModal></ServingInfoModal>
+      </div>
 
-      <!-- TODO: add serving input and make the info notice a modal-->
-      <div class="max-w-[400px]"><input placeholder="Enter a number ex: 1.5">
-        <p>{{
-            `Enter a serving size. In other words, the quantity of this food that you would like the calculation to consider. A single serving is equal to 1.
-      For whole foods, you will need to follow the guidelines to determine what is "1" serving, as shown below:`
-          }}</p>
-        <img class="h-[700px]"
-             src="https://reallifegoodfood.umn.edu/sites/reallifegoodfood.umn.edu/files/2022-03/portion-size-gu_37746735.png"
-             alt="portion size guidelines">
-        <p>{{ `For menu items, the item itself is considered a single serving.` }}</p></div>
-
-      <button class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-green-400 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-400 dark:focus:ring-green-300">
-      Add to calculator
+      <button :disabled="isAdded" @click="handleAdd" :class="`${isAdded && 'disabled'} inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-green-400 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-400 dark:focus:ring-green-300`">
+        {{ isAdded ? 'Item already added' : 'Add to calculation' }}
       </button>
     </div>
   </section>
 </template>
 
 <style scoped>
+.disabled {
+  @apply pointer-events-none bg-neutral-600
+}
+
 
 </style>
