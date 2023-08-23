@@ -18,7 +18,7 @@
 <template>
   <div class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 flex flex-col justify-between items-center gap-2">
     <a href="#">
-      <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{label}}</h5>
+      <h5 class="mb-2 text-lg font-bold tracking-tight text-gray-900 dark:text-white">{{label}}</h5>
     </a>
       <NuxtLink class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-green-400 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-400 dark:focus:ring-green-300" :to="`/foods/${id}?measure=${measure}&quantity=${quant}`">View</NuxtLink>
   </div>

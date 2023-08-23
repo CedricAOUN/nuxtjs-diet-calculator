@@ -1,5 +1,7 @@
 <script setup lang="ts">
 
+import AddItem from "~/components/AddItem.vue";
+
 const { id } = useRoute().params;
 const { measure, quantity } = useRoute().query;
 
@@ -29,6 +31,9 @@ interface FoodData {
 
 let foodData = ref<FoodData | null>(null);
 
+let foodName = foodData.value?.ingredients[0]?.parsed[0]?.food
+
+console.log(foodName)
 
 const fetchFoodData = async () => {
   try {
@@ -44,24 +49,9 @@ const fetchFoodData = async () => {
   }
 };
 
-interface FoodObject {
-  nutrition?: any,
-  multiplier?: number,
-  name: string,
-  weight: number | undefined,
-}
 
-function handleAdd() {
-  let foodObject: FoodObject = {nutrition: null, multiplier: 1, name: '', weight: 0}
-  foodObject.nutrition = foodData.value?.totalNutrients
-  foodObject.multiplier = multiplierInput.value
-  foodObject.name = foodData.value?.ingredients[0].parsed[0].food
-  foodObject.weight = foodData.value?.totalWeight
-  useItemList().value = [...useItemList().value, foodObject]
-  console.log(useItemList().value)
-}
+//TODO fish issue with regular fish item not working
 
-const multiplierInput = ref<number>(1);
 
 onMounted(fetchFoodData);
 watch(() => id, fetchFoodData);
@@ -70,16 +60,13 @@ watch(() => id, fetchFoodData);
 
 <template>
   <section class="text-center py-16">
-    <div v-if="foodData != null">
-      <h1>Hello {{ id }}</h1>
-        <!-- Placeholder calorie component-->
-      <p>Calories per serving: {{ foodData.calories }}</p>
-      <p>Weight per serving: {{foodData.totalWeight}}g</p>
-      <FoodNutrition :nutrition-list="foodData.totalNutrients"></FoodNutrition>
-      <p>How much of this food?</p>
-      <input placeholder="Amount of this food" v-model="multiplierInput">
-      <button @click="handleAdd">Add to calculator</button>
+    <div v-if="foodData != null" class="grid grid-cols-3 grid-rows-5 gap-4 px-16">
+      <div class="col-span-2 row-span-2 flex justify-center items-center text-6xl font-extrabold"><h1>{{foodData?.ingredients[0]?.parsed[0]?.food.charAt(0).toUpperCase() + foodData?.ingredients[0]?.parsed[0]?.food.slice(1) }}</h1></div>
+      <div class="row-span-5 col-start-3 flex justify-center items-center "><FoodNutrition :nutrition-list="foodData.totalNutrients" :calories="foodData.calories" :weight="foodData.totalWeight"/></div>
+      <div class="col-span-2 row-start-3 flex justify-center items-center "><MainNutrition :calories="foodData.calories" :carbs="foodData.totalNutrients['CHOCDF.net']" :protein="foodData.totalNutrients['PROCNT']"/></div>
+      <div class="col-span-2 row-span-2 row-start-4 flex justify-center items-center "><AddItem :food-data="foodData"/></div>
     </div>
+
   </section>
 </template>
 

@@ -10,7 +10,6 @@ const darkMode = ref(false);
 </script>
 
 <template>
-
   <header :class="{dark: darkMode}">
     <nav class="px-[30rem] shadow-sm shadow-black dark:bg-gray-800 dark:text-white">
       <ul class="flex flex-row justify-between gap-5 h-[75px] items-center">

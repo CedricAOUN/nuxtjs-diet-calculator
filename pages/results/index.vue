@@ -13,8 +13,7 @@
     quantity: number,
     unit: string,
   }
-
-  console.log(displayItems.value[0].nutrition)
+  
 
 
   const nutrientTotals = computed(() => {
@@ -50,7 +49,7 @@
 <template>
   <section class="flex flex-col items-center py-6 gap-2">
     <h1 class="text-4xl">Results</h1>
-    <div>
+    <div v-if="displayItems.length > 0">
       <h2>Item List</h2>
       <div class="flex flex-wrap">
         <div class="flex" v-for="i of displayItems">
@@ -61,6 +60,12 @@
         <h2>Info</h2>
         <Totals :totals="nutrientTotals"></Totals>
       </div>
+    </div>
+    <div v-if="displayItems.length == 0" class="flex justify-center flex-col">
+      <p class="mb-5">Nothing to show! Please search for a food item and add it to the calculator</p>
+      <button>
+        <NuxtLink class="p-2 rounded-lg bg-green-400 text-white" to="/foods">Browse foods</NuxtLink>
+      </button>
     </div>
   </section>
 </template>
