@@ -1,6 +1,12 @@
 <script setup lang="ts">
-  const itemList = useItemList();
-  const displayItems = ref(itemList.value);
+
+  interface Item {
+    name: string,
+    nutrition: any,
+    multiplier: number,
+  }
+
+  const displayItems = ref<Item[]>(useItemList().value);
 
   interface Nutrient {
     name: string,
@@ -41,12 +47,13 @@
 <template>
   <section class="flex flex-col items-center py-6 gap-2">
     <h1 class="text-4xl">Results</h1>
-    <div class="flex flex-wrap gap-4">
-      <FoodInfo v-for="i of displayItems" :title="i.value.title" :id="i.value.id" :quantity="i.value.servingValue"></FoodInfo>
-    </div>
     <div>
-      <Totals v-if="nutrientTotals.length > 0" :totals="nutrientTotals"></Totals>
-      <p v-if="nutrientTotals.length == 0">Nothing to calculate! Browse the food section, and add something to be calculated.</p>
+      <h2>Item List</h2>
+      <div class="flex flex-wrap">
+        <div class="flex" v-for="i of displayItems">
+          <FoodInfo :title="i.name" :quantity="i.multiplier"></FoodInfo>
+        </div>
+      </div>
     </div>
   </section>
 </template>

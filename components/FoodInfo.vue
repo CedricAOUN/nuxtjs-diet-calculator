@@ -1,11 +1,11 @@
 <script setup lang="ts">
 
-const { title, id, quantity } = defineProps(['title', 'id', 'quantity'])
+const { title, quantity } = defineProps(['title', 'quantity'])
 
 const itemList = useState<any>('itemList')
 function handleRemove() {
   itemList.value.map((item: any, index: number) => {
-    if(item.value.id == id) {
+    if(item.name == title) {
       itemList.value.splice(index, 1)
     }
   })
