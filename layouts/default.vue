@@ -31,7 +31,7 @@ const openMenu = ref(false);
               <img class="h-6 w-6"
                                                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Circle-icons-calculator.svg/1024px-Circle-icons-calculator.svg.png"
                                                    alt="diet calculator logo">
-              <p>Diet Calculator</p></li>
+              <p class="dark:text-white">Diet Calculator</p></li>
             <li>
               <NuxtLink to="/" class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent" aria-current="page">Home</NuxtLink>
             </li>
