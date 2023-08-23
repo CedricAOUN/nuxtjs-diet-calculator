@@ -58,9 +58,9 @@ watch(() => id, fetchFoodData);
 
 <template>
   <section class="text-center py-16">
-    <div v-if="foodData != null" class="grid grid-cols-3 grid-rows-5 gap-4 px-16">
+    <div v-if="foodData != null" class="grid grid-cols-1 grid-rows-5 gap-4 md:px-16">
       <div class="col-span-2 row-span-2 flex justify-center items-center text-6xl font-extrabold"><h1>{{foodData?.ingredients[0]?.parsed[0]?.food.charAt(0).toUpperCase() + foodData?.ingredients[0]?.parsed[0]?.food.slice(1) }}</h1></div>
-      <div class="row-span-5 col-start-3 flex justify-center items-center "><FoodNutrition :nutrition-list="foodData.totalNutrients" :calories="foodData.calories" :weight="foodData.totalWeight"/></div>
+      <div class="row-span-5 col-start-1 md:col-start-3 flex justify-center items-center "><FoodNutrition :nutrition-list="foodData.totalNutrients" :calories="foodData.calories" :weight="foodData.totalWeight"/></div>
       <div class="col-span-2 row-start-3 flex justify-center items-center "><MainNutrition :calories="foodData.calories" :carbs="foodData.totalNutrients['CHOCDF.net']" :protein="foodData.totalNutrients['PROCNT']"/></div>
       <div class="col-span-2 row-span-2 row-start-4 flex justify-center items-center "><AddItem :food-data="foodData"/></div>
     </div>

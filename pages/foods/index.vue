@@ -36,7 +36,7 @@
 <template>
   <section class="text-center py-16">
     <h1 class="text-4xl">Foods:</h1>
-      <input id='search' v-model="inputValue" class="p-4 m-2 bg-neutral-300 dark:bg-neutral-600 mx-auto block max-w-[800px] w-full" placeholder="Enter a brand, or a specific type of food/ingredient">
+      <input id='search' v-model="inputValue" class="p-4 m-2 bg-neutral-300 dark:bg-neutral-600 mx-auto block w-full max-w-[800px]" placeholder="Enter a brand, or a specific type of food/ingredient">
       <button class="p-2 rounded-lg bg-green-400 text-white" @click="searchItems(inputValue)">
         Search
       </button>

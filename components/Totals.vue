@@ -12,7 +12,7 @@ interface Nutrient {
 </script>
 
 <template>
-  <div class="flex flex-col items-center px-20 py-4 rounded">
+  <div class="flex flex-col items-center md:px-20 py-4 rounded">
     <FoodNutrition :nutrition-list="totals" />
   </div>
 </template>
