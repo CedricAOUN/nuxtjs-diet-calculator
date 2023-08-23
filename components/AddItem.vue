@@ -7,13 +7,15 @@ interface FoodObject {
   multiplier?: number,
   name: string,
   weight: number | undefined,
+  id: string,
 }
 function handleAdd() {
-  let foodObject: FoodObject = {nutrition: null, multiplier: 1, name: '', weight: 0}
+  let foodObject: FoodObject = {nutrition: null, multiplier: 1, name: '', weight: 0, id: ''}
   foodObject.nutrition = foodData.totalNutrients
   foodObject.multiplier = multiplierInput.value
   foodObject.name = foodData.ingredients[0].parsed[0].food
   foodObject.weight = foodData.totalWeight
+  foodObject.id = foodData.ingredients[0].parsed[0].foodId
   useItemList().value = [...useItemList().value, foodObject]
   console.log(useItemList().value)
 }

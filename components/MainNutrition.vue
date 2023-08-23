@@ -10,10 +10,10 @@ function displayValue(nutrient: any) {
 
 <template>
   <div class="w-full h-full flex justify-center items-center ">
-    <div class="flex justify-evenly w-full text-2xl shadow-md shadow-black">
-      <p class="bg-red-500 w-full py-6"><b>Calories:</b> {{ calories }}</p>
+    <div class="flex justify-evenly w-full text-2xl rounded-md shadow-md shadow-black">
+      <p class="bg-red-500 w-full py-6 rounded-l-md"><b>Calories:</b> {{ calories }}</p>
       <p class="bg-orange-400 w-full py-6"><b>Carbs:</b> {{ displayValue(carbs) }}</p>
-      <p class="bg-green-600 w-full py-6"><b>Protein:</b> {{ displayValue(protein) }}</p>
+      <p class="bg-green-600 w-full py-6 rounded-r-md"><b>Protein:</b> {{ displayValue(protein) }}</p>
     </div>
   </div>
 </template>

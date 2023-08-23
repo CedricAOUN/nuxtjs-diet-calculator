@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const {nutritionList, calories, weight} = defineProps(['nutritionList', "calories", 'weight'])
+const {nutritionList} = defineProps(['nutritionList', "calories", 'weight'])
 
 let totalFat;
 let carbs;
