@@ -21,7 +21,6 @@ function handleAdd() {
   foodObject.weight = foodData.totalWeight
   foodObject.id = foodData.ingredients[0].parsed[0].foodId
   useItemList().value = [...useItemList().value, foodObject]
-  console.log(useItemList().value)
   }
 }
 
