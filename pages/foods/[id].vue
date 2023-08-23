@@ -50,8 +50,6 @@ const fetchFoodData = async () => {
 };
 
 
-//TODO fish issue with regular fish item not working
-
 
 onMounted(fetchFoodData);
 watch(() => id, fetchFoodData);
@@ -66,7 +64,6 @@ watch(() => id, fetchFoodData);
       <div class="col-span-2 row-start-3 flex justify-center items-center "><MainNutrition :calories="foodData.calories" :carbs="foodData.totalNutrients['CHOCDF.net']" :protein="foodData.totalNutrients['PROCNT']"/></div>
       <div class="col-span-2 row-span-2 row-start-4 flex justify-center items-center "><AddItem :food-data="foodData"/></div>
     </div>
-
   </section>
 </template>
 

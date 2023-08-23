@@ -36,12 +36,12 @@
 <template>
   <section class="text-center py-16">
     <h1 class="text-4xl">Foods:</h1>
-      <input id='search' v-model="inputValue" class="p-4 m-2 bg-neutral-300 mx-auto block max-w-[800px] w-full" placeholder="Enter a search term, like a fast food menu item, or any type of food!">
-      <button class="m-2 p-2 rounded-lg bg-green-400 text-white" @click="searchItems(inputValue)">
+      <input id='search' v-model="inputValue" class="p-4 m-2 bg-neutral-300 dark:bg-neutral-600 mx-auto block max-w-[800px] w-full" placeholder="Enter a brand, or a specific type of food/ingredient">
+      <button class="p-2 rounded-lg bg-green-400 text-white" @click="searchItems(inputValue)">
         Search
       </button>
   </section>
-  <section class="text-center py-16 h-full flex justify-center gap-4 flex-col px-5 flex-wrap">
+  <section class="text-center h-full flex justify-center gap-4 flex-col px-5 flex-wrap">
     <h2 class="text-4xl">Results:</h2>
       <div v-if='foodItems?.length > 0'>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 justify-center gap-2">
