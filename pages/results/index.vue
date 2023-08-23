@@ -2,36 +2,39 @@
 
   interface Item {
     name: string,
-    nutrition: any,
+    nutrition: Record<string, Nutrient>,
     multiplier: number,
   }
 
   const displayItems = ref<Item[]>(useItemList().value);
 
   interface Nutrient {
-    name: string,
-    amount: number,
+    label: string,
+    quantity: number,
     unit: string,
   }
 
+  console.log(displayItems.value[0].nutrition)
 
 
   const nutrientTotals = computed(() => {
     const totals: Nutrient[] = [];
 
     displayItems.value.forEach((item) => {
-      const nutrientList = item.value.nutrition.nutrients;
-      const multiplier = item.value.servingValue;
+      const nutrientRecord = item.nutrition
+      const nutrientList: Nutrient[] = Object.keys(nutrientRecord).map((record) => nutrientRecord[record])
+      const multiplier = item.multiplier
+      console.log(nutrientList)
 
       nutrientList.forEach((nutrObj: any) => {
-        const existingNutrient = totals.find((n) => n.name === nutrObj.name);
+        const existingNutrient = totals.find((n) => n.label === nutrObj.label);
 
         if (existingNutrient) {
-          existingNutrient.amount += nutrObj.amount * multiplier;
+          existingNutrient.quantity += nutrObj.quantity * multiplier;
         } else {
           totals.push({
-            name: nutrObj.name,
-            amount: nutrObj.amount * multiplier,
+            label: nutrObj.label,
+            quantity: nutrObj.quantity * multiplier,
             unit: nutrObj.unit,
           });
         }
@@ -53,6 +56,10 @@
         <div class="flex" v-for="i of displayItems">
           <FoodInfo :title="i.name" :quantity="i.multiplier"></FoodInfo>
         </div>
+      </div>
+      <div>
+        <h2>Info</h2>
+        <Totals :totals="nutrientTotals"></Totals>
       </div>
     </div>
   </section>
