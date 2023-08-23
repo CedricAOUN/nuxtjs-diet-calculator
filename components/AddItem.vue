@@ -49,7 +49,7 @@ function handleInput() {
   multiplierInput.value = multiplierInput.value.replace(' ', '')
 }
 
-const multiplierInput = ref<string>('');
+const multiplierInput = ref<string>('1');
 </script>
 
 <template>

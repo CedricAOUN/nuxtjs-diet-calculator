@@ -33,7 +33,6 @@ let foodData = ref<FoodData | null>(null);
 
 let foodName = foodData.value?.ingredients[0]?.parsed[0]?.food
 
-console.log(foodName)
 
 const fetchFoodData = async () => {
   try {
@@ -43,7 +42,6 @@ const fetchFoodData = async () => {
     });
 
     foodData.value = response.data.value as FoodData;
-    console.log(foodData.value)
   } catch (error) {
     console.log('Error getting food data', error);
   }

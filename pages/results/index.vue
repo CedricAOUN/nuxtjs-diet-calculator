@@ -23,7 +23,6 @@ const nutrientTotals = computed(() => {
     const nutrientRecord = item.nutrition
     const nutrientList: Nutrient[] = Object.keys(nutrientRecord).map((record) => nutrientRecord[record])
     const multiplier = item.multiplier
-    console.log(nutrientList)
 
     nutrientList.forEach((nutrObj: any) => {
       const existingNutrient = totals.find((n) => n.label === nutrObj.label);
