@@ -9,6 +9,11 @@ const openMenu = ref(false);
     darkMode.value = !darkMode.value;
   }
 
+
+useHead({
+  script: [{ src: "https://developer.edamam.com/attribution/badge.js" }],
+});
+
   function handleOpen() {
     openMenu.value = !openMenu.value
   }
@@ -49,10 +54,14 @@ const openMenu = ref(false);
   </header>
 
   <div class="" v-bind:class="{dark: darkMode}">
-    <div class="dark:bg-gray-600 dark:text-white min-w-screen min-h-screen">
+    <div class="dark:bg-gray-600 dark:text-white min-w-screen min-h-[calc(100svh-6rem)]">
       <NuxtPage></NuxtPage>
     </div>
   </div>
+
+  <footer>
+    <img class="h-[2rem] text-center mx-auto" src="../public/Edamam_Badge_Transparent.svg" alt="Edamam Badge">
+  </footer>
 
 </template>
 
