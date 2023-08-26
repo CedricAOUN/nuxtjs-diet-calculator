@@ -75,8 +75,8 @@
   <section class="text-center h-full flex justify-center gap-4 flex-col px-5 flex-wrap">
     <h2 class="text-4xl">Results:</h2>
       <div v-if='foodItems?.length > 0'>
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 justify-center gap-2">
-          <FoodCard v-for="i of foodItems" :food-item="i"></FoodCard>
+        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 justify-center gap-2 ">
+          <FoodCard class="mx-auto w-full" v-for="i of foodItems" :food-item="i"></FoodCard>
         </div>
       </div>
       <p v-if="foodItems?.length == 0 && !isLoading">No Results Found</p>
