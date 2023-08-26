@@ -56,17 +56,17 @@
 </script>
 
 <template>
-  <section class="text-center py-16">
-    <h1 class="text-4xl">Foods:</h1>
-    <div class="flex justify-center mx-auto w-full relative max-w-[800px] ">
+  <section class="text-center py-16 mx-2 md:mx-0">
+    <h1 class="text-4xl mb-4">Foods:</h1>
+    <div class="grid grid-cols-4 gap-5 space-y-2 mx-auto w-full relative max-w-[800px] ">
       <input id='search' v-model="inputValue" autocomplete="off"
-             class="p-4 m-2 bg-neutral-300 dark:bg-neutral-600 w-full max-w-[800px] "
+             class="p-4 col-span-4 sm:col-span-3 bg-neutral-300 dark:bg-neutral-600 w-full max-w-[800px] "
               placeholder="Enter a brand, or a specific type of food/ingredient">
-      <button class="p-2 h-12 my-auto rounded-lg bg-green-400 text-white" @click="searchItems(inputValue)">
+      <button class="p-2 sm:col-start-4 col-span-2 col-start-2 row-start-1 h-12 my-auto rounded-lg bg-green-400 text-white" @click="searchItems(inputValue)">
         Search
       </button>
-      <ul v-if="autoList?.length > 0" id="auto-complete-list" class="text-left left-1 text-black mt-[4.2em] md:max-w-[728px] max-w-[90svw] w-full absolute bg-white dark:bg-gray-600 dark:text-white border border-gray-300 rounded shadow-md ">
-        <li v-for="s in autoList" class="hover:bg-gray-400 bg-opacity-50 hover:text-white px-3 py-3" @click="handleChange(s)">{{s.charAt(0).toUpperCase() + s.slice(1)}}</li>
+      <ul v-if="autoList?.length > 0" id="auto-complete-list" class="text-left sm:col-start-1 sm:col-end-4 w-full row-start-3 sm:row-start-2 text-black absolute bg-white dark:bg-gray-600 dark:text-white border border-gray-300 rounded shadow-md ">
+        <li v-for="s in autoList" class="hover:bg-gray-400 bg-opacity-50 cursor-pointer hover:text-white px-3 py-3" @click="handleChange(s)">{{s.charAt(0).toUpperCase() + s.slice(1)}}</li>
       </ul>
     </div>
 
